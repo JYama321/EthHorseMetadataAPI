@@ -1,0 +1,3 @@
+class TokenCreated < ApplicationRecord
+
+end
