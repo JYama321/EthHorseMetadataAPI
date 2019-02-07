@@ -30,6 +30,7 @@ module ImageSynth
         [3512,2872],[3524,2885],[3595,2877],[3575,2871],[3711,2877],[3530,2876],[3519,2870],[3520,2877]
     ]
     def create_image(texture_info)
+        run_gc
         originSize = ImageOriginSize[texture_info[:origin_type]-1]
         rpRate = ImageResizeAndPositionRate[texture_info[:origin_type]-1]
         puts texture_info[:texture_paths[5]]
