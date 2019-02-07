@@ -1,6 +1,6 @@
 module ImageSynth
     extend ActiveSupport::Concern
-    require 'RMagick'
+    require 'rmagick'
     TexturesRate = {
         normal_rate: ['a','b','c','d','f','g','h','i','j','r','s','t','u','w','y'],
         slightly_rare: ['p','l','m','n','o'],
