@@ -21,8 +21,8 @@ test:
   database: db/test.sqlite3
 
 production:
-  <<: *default
-  adapter: mysql2
   database: <%= ENV['DB_NAME'] %>
   username: <%= ENV['DB_USERNAME'] %>
   password: <%= ENV['DB_PASSWORD'] %>
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: 5000
