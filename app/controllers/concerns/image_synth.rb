@@ -56,6 +56,7 @@ module ImageSynth
         end
         imageOut = imageOrigin.composite(base, 0, 0, Magick::OverCompositeOp)
         imageOut.write(texture_info[:image_path])
+        run_gc
     end
 
     # originSize[w,h], targetImage(Magick::ImageList), w,h(%)
@@ -68,6 +69,11 @@ module ImageSynth
         return baseImg.composite(targetImg, l, t, Magick::OverCompositeOp)
     end
 
+    def run_gc
+        fDsiabled = GC.enable
+        GC.start
+        CG.disable if fDsiabled
+    end
 
     def gene_to_image_info(gene="0000000000000000000000000000000000000000000000000000000000000000")
         texture_info = {
