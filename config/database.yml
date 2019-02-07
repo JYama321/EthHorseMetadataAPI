@@ -27,4 +27,4 @@ production:
   password: <%= ENV['DB_PASSWORD'] %>
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
-  host: <%= ENV.fetch("us-cdbr-iron-east-03.cleardb.net"){ localhost } >
+  host: <%= ENV.fetch("DB_HOSTNAME:"){ localhost } >
