@@ -32,6 +32,7 @@ module ImageSynth
     def create_image(texture_info)
         originSize = ImageOriginSize[texture_info[:origin_type]-1]
         rpRate = ImageResizeAndPositionRate[texture_info[:origin_type]-1]
+        puts texture_info[:texture_paths[5]]
         base = Magick::ImageList.new(texture_info[:texture_paths][5])
         imageOrigin = Magick::ImageList.new(texture_info[:texture_paths][5])
         imageHead = Magick::ImageList.new(texture_info[:texture_paths][0])
