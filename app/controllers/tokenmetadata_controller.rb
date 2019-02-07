@@ -1,4 +1,5 @@
 class TokenmetadataController < ApplicationController
+    include ImageSynth
     def tokeninfo
         @id = params[:id]
         if @token = TokenCreated.find_by(tokenId: @id)
@@ -10,6 +11,13 @@ class TokenmetadataController < ApplicationController
     end
 
     def token_image
-        send_file 'storage/sample_token1.png', type: 'image/png', disposition: 'inline'
+        gene = params[:gene]
+        image_info = gene_to_image_info(gene)
+        if File.exist?(image_info[:image_path])
+            send_file image_info[:image_path], type: 'image/png', disposition: 'inline'
+        else
+            create_image(image_info)
+            send_file image_info[:image_path], type: 'image/png', disposition: 'inline'
+        end
     end
 end
