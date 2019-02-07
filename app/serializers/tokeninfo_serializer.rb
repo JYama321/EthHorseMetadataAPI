@@ -1,3 +1,3 @@
 class TokeninfoSerializer < ActiveModel::Serializer
-  attributes :id, :tokne_id, 
+  attributes :id, :tokne_id
 end
