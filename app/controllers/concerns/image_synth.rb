@@ -52,11 +52,10 @@ module ImageSynth
         ]
         puts "image resized", resizedImages
         resizedImages.each_with_index do |img, index|
-            img.write("storage/#{index}.png")
             imageOrigin = imageOrigin.composite(img,originSize[0] * rpRate[index][2],originSize[1] * rpRate[index][3], Magick::OverCompositeOp)
         end
-        imageOrigin = imageOrigin.composite(base, 0, 0, Magick::OverCompositeOp)
-        imageOrigin.write(texture_info[:image_path])
+        imageOut = imageOrigin.composite(base, 0, 0, Magick::OverCompositeOp)
+        imageOut.write(texture_info[:image_path])
     end
 
     # originSize[w,h], targetImage(Magick::ImageList), w,h(%)
@@ -102,7 +101,7 @@ module ImageSynth
                 texture_info[:texture_paths][0] = BaseTextureImagePath[:parts] + texture_info[:texture_names][0] + ".png"
                 texture_info[:texture_names][1] = texture_info[:texture_names][1] + FaceAndHairTextures[:hair][texture_info[:texture_names][5] - 1]
                 texture_info[:texture_paths][1] = BaseTextureImagePath[:parts] + texture_info[:texture_names][1] + ".png"
-                texture_info[:image_path] = "storage/" + gene + ".png"
+                texture_info[:image_path] = "storage/" + genePieces.join("") + ".png"
                 texture_info[:origin_type] = (num / 125).floor + 1
             end
         end
