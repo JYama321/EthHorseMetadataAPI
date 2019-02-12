@@ -2,6 +2,19 @@ class TokenmetadataController < ApplicationController
     include ImageSynth
     def tokeninfo
         @id = params[:id]
+        @image = "https://ethhorse-metadata.herokuapp.com/token/#{@id}/image/33333333333333333333333333333333"
+        @name = "King Horse"
+        @isNFT = false
+        @attributes = [{
+            :key => "体力",
+            :value => 45,
+            :detail => "体力そこそこ"
+        },{
+            :key => "最高速度",
+            :value => "32",
+            :detail => "まあまあ"
+        }]
+        @contract_address = "0x8105C860608c81d27a24C9Aa08533c00deF38BD0"
         if @token = TokenCreated.find_by(tokenId: @id)
             # TODO: トークンがすでに存在してる時はそのまま返す
         else
