@@ -33,4 +33,9 @@ class TokenmetadataController < ApplicationController
             send_file image_info[:image_path], type: 'image/png', disposition: 'inline'
         end
     end
+
+    def icon
+        image_path="storage/icon.png"
+        send_file image_path, type: 'image/png', disposition: 'inline'
+    end
 end
