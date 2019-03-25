@@ -7,6 +7,7 @@ module EthCall
         nftMetadataSelector='0x7aee8a84'
         tokenId = token_id.slice(2,64).rjust(64,'0')
         data = nftMetadataSelector + tokenId
+        #TODO: nftかどうかの判定を追加する
         ethCallBody = {
             "jsonrpc": "2.0",
             "method": "eth_call",
