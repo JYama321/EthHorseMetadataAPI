@@ -1,5 +1,6 @@
 class TokenmetadataController < ApplicationController
     include ImageSynth
+    include EthCall
     def tokeninfo
         @id = params[:id]
         @image = "https://ethhorse-metadata.herokuapp.com/token/#{@id}/image/33333333333333333333333333333333"
@@ -37,5 +38,10 @@ class TokenmetadataController < ApplicationController
     def icon
         image_path="storage/icon.png"
         send_file image_path, type: 'image/png', disposition: 'inline'
+    end
+
+    def tokenMetaData
+        @id = params[:id]
+        getTokenMetadata(id)
     end
 end
