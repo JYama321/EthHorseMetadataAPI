@@ -29,6 +29,7 @@ gem 'jbuilder'
 gem 'rack-cors'
 gem 'dotenv-rails'
 gem 'httpclient'
+gem 'rack-cors'
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
 
