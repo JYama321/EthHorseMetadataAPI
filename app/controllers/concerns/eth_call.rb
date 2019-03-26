@@ -3,18 +3,18 @@ module EthCall
     require 'jsonclient'
 
     def getTokenMetadata(token_id)
-        contractAddress = '0xce7ecd4b01a089709264ea186356d77c79c721a2'
+        contractAddress = '0x262fdab75f0db9b3cebe7a24684002e415454807'
         nftMetadataSelector='0x7aee8a84'
-        tokenId = token_id.slice(2,64).rjust(64,'0')
-        data = nftMetadataSelector + tokenId
+        data = nftMetadataSelector + token_id
         #TODO: nftかどうかの判定を追加する
         ethCallBody = {
             "jsonrpc": "2.0",
+            "id": "1.0",
             "method": "eth_call",
             "params": [
                 {
-                to: contractAddress, // token contract address
-                data,
+                to: contractAddress, # token contract address
+                data: data,
             },
             'latest',
             ]
@@ -27,7 +27,7 @@ module EthCall
                 :body => ethCallBody
             }
             )
-        JSON.parse(res.body)
+        res.body
     end
 
 end

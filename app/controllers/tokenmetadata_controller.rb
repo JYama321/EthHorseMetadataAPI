@@ -2,10 +2,15 @@ class TokenmetadataController < ApplicationController
     include ImageSynth
     include EthCall
     def tokeninfo
-        @id = params[:id]
-        @image = "https://ethhorse-metadata.herokuapp.com/token/#{@id}/image/33333333333333333333333333333333"
+        @id = params[:id] #idはbyte型で保持しておく
+        @image = "https://ethhorse-metadata.herokuapp.com/token/images/#{@id}"
         @name = "King Horse"
         @isNFT = false
+        if @id.length >= 64
+            data = getTokenMetadata(@id)
+            @gene = data["result"].slice(66,64).to_i(16)
+            @image = "https://ethhorse-metadata.herokuapp.com/token/images/#{@gene}"
+        end
         @attributes = [{
             :key => "体力",
             :value => 45,
