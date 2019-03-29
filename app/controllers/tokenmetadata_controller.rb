@@ -6,9 +6,10 @@ class TokenmetadataController < ApplicationController
         @image = "https://ethhorse-metadata.herokuapp.com/token/images/#{@id}"
         @name = "King Horse"
         @isNFT = false
-        if @id.length >= 64
+        if @id.slice(0,1).to_i == 8
             data = getTokenMetadata(@id)
             @gene = data["result"].slice(66,64).to_i(16)
+            puts 'King Horse', @gene
             @image = "https://ethhorse-metadata.herokuapp.com/token/images/#{@gene}"
         end
         @attributes = [{
@@ -45,8 +46,4 @@ class TokenmetadataController < ApplicationController
         send_file image_path, type: 'image/png', disposition: 'inline'
     end
 
-    def tokenMetaData
-        @id = params[:id]
-        getTokenMetadata(id)
-    end
 end
